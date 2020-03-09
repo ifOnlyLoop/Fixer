@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{3120AA58-9E08-4231-B3FF-C29644B5B5EF}</ProjectGuid>
+    <ProjectGuid>{197AD2F2-F2BA-4D45-9ADF-BDAEAE101BF8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -101,6 +101,7 @@
     <ClCompile Include="eAng.cpp" />
     <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="ObjData.cpp" />
     <ClCompile Include="ObjReader.cpp" />
     <ClCompile Include="rMat.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -108,9 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="eAng.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="ObjReader.h" />
     <ClInclude Include="MathUtil.h" />
+    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="ObjData.h" />
+    <ClInclude Include="ObjReader.h" />
     <ClInclude Include="rMat.h" />
     <ClInclude Include="vec3.h" />
   </ItemGroup>

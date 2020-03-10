@@ -21,7 +21,7 @@ int main()
     string line;
     string v, x, y, z;
     vec3 vvv;
-    vector<vec3> vertexArray();
+   
     
     int n = 0;
     auto start = high_resolution_clock::now();
@@ -31,10 +31,10 @@ int main()
     cout << endl << duration.count() << endl;
 
      start = high_resolution_clock::now();
-     obj.Export("objTestOut.obj");
+     obj.EXPORT("RESULT.obj");
      stop = high_resolution_clock::now();
      duration = duration_cast<microseconds>(stop - start);
-    cout << endl << duration.count() << endl;
+     cout << endl << duration.count() << endl;
     
     
     system("pause");

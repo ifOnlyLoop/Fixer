@@ -9,8 +9,10 @@ public:
 
 	 Vertex();
 	~Vertex();
-	 Vertex(vec3 v3);
-	void push(vec3);
+	 Vertex(float x, float y, float z);
+	
+	 void push(vec3);
+	 void push(float x, float y, float z);
 	//vec3& operator[](int idx);
 	
 	

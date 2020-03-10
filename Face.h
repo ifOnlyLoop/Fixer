@@ -7,8 +7,8 @@ class Face
 public:
 	 Face();
 	~Face();
-
-
+	void push(int);
+	std::vector<int> face;
 private:
-	//std::vector<int> face;
+	
 };

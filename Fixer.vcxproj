@@ -99,22 +99,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="eAng.cpp" />
+    <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Face.cpp" />
     <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="ObjData.cpp" />
+    <ClCompile Include="ObjFile.cpp" />
     <ClCompile Include="ObjReader.cpp" />
     <ClCompile Include="rMat.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="vec3.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="eAng.h" />
+    <ClInclude Include="Edge.h" />
+    <ClInclude Include="Face.h" />
     <ClInclude Include="MathUtil.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="ObjData.h" />
+    <ClInclude Include="ObjFile.h" />
     <ClInclude Include="ObjReader.h" />
     <ClInclude Include="rMat.h" />
     <ClInclude Include="vec3.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

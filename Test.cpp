@@ -5,7 +5,7 @@
 #include "vec3.h"
 #include "eAng.h"
 #include "rMat.h"
-#include"ObjReader.h"
+#include "ObjFile.h"
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -25,9 +25,15 @@ int main()
     
     int n = 0;
     auto start = high_resolution_clock::now();
-    ObjReader obj("objTest.obj");
+    ObjFile obj("objTest.obj");
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
+    cout << endl << duration.count() << endl;
+
+     start = high_resolution_clock::now();
+     obj.Export("objTestOut.obj");
+     stop = high_resolution_clock::now();
+     duration = duration_cast<microseconds>(stop - start);
     cout << endl << duration.count() << endl;
     
     

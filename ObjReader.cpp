@@ -37,19 +37,19 @@ void ObjReader::readData()
         if (v[0] == 'v') 
         {
             vv++;
-            /*info >> x >> y >> z;
+            info >> x >> y >> z;
             v3.x = std::stof(z), 
             v3.y = std::stof(y), 
             v3.z = std::stof(z);
-            vertexArray.push_back(v3);*/
+            vertex.push_back(v3);
             //std::cout << v << "\t" << x << "\t" << y << "\t" << z << std::endl;
         }
         if (v[0] == 'f') ff++;
         
     }
-    /*for (auto p : vertexArray)
+    for (auto p : vertex)
     {
         std::cout << p.x << "\t" << p.y << "\t" << p.z << std::endl;
-    }*/
+    }
     std::cout << vv << " " << ff;
 }

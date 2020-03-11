@@ -40,7 +40,7 @@ private:
 		x, y, z;
 	char   // .obj Geometric Data Type 
 		dataType;
-
+	std::vector<int> FaceVertex;
 	/*
 	 * END OF DUMMY DATA
 	 */
@@ -63,7 +63,9 @@ private:
 	// Handle Face
 	void faceHandler();
 	// Triangulate Polygons
-	void triangulation();
+	void triangulation(std::vector<int>&, int mode);
+	// 
+	void subDivision(Face& TriF);
 
 public:
 	// Constrtuctor
@@ -76,6 +78,8 @@ public:
 	// PUBLIC MEMBER DATATYPES //
 	std::vector<Vertex> vertex;
 	std::vector<Face> face;
+	// Traingulation Parameter
+	float u, v;
 	//std::vector<int>  face;
 };
 

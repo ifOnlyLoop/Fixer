@@ -2,14 +2,16 @@
 
 Face::Face()
 {
+	//vertexListData = NULL;
 }
 
 Face::Face(int x, int y, int z)
 {
-	face.clear();
-	face.push_back(x);
-	face.push_back(y);
-	face.push_back(z);
+	//vertexListData = NULL;
+	vertexList.clear();
+	vertexList.push_back(x);
+	vertexList.push_back(y);
+	vertexList.push_back(z);
 }
 
 Face::~Face()
@@ -18,18 +20,28 @@ Face::~Face()
 
 void Face::push(int d)
 {
-	face.push_back(d);
+	vertexList.push_back(d);
 }
 
 void Face::push(int x, int y, int z)
 {
-	face.clear();
-	face.push_back(x);
-	face.push_back(y);
-	face.push_back(z);
+	vertexList.clear();
+	vertexList.push_back(x);
+	vertexList.push_back(y);
+	vertexList.push_back(z);
+}
+
+int Face::size()
+{
+	return vertexList.size();
+}
+
+void Face::clear()
+{
+	vertexList.clear();
 }
 
 int& Face::operator[](int idx)
 {
-	return face[idx];
+	return vertexList[idx];
 }

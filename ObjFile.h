@@ -1,15 +1,16 @@
 #pragma once
 
+// STL
 #include <queue>
 #include <vector>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
-#include "vec3.h"
+// UD
 #include "Vertex.h"
 #include "Face.h"
+#include "FaceUtil.h"
 
 class Vertex;
 class Face;
@@ -76,8 +77,8 @@ public:
 	void IMPORT(std::string);
 	void EXPORT(std::string);
 	// PUBLIC MEMBER DATATYPES //
-	std::vector<Vertex> vertex;
-	std::vector<Face> face;
+	std::vector<Vertex> vertexList;
+	std::vector<Face> faceList;
 	// Traingulation Parameter
 	float u, v;
 	//std::vector<int>  face;

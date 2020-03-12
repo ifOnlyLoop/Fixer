@@ -69,14 +69,14 @@ void ObjFile::read()
 void ObjFile::write()
 {
     
-    for (auto p : vertex)
+    for (auto p : vertexList)
     {
         objEXPORT << "v\t"<< p.x << "\t" << p.y << "\t" << p.z << std::endl;
     }
-    for (auto f : face)
+    for (auto f : faceList)
     {
         objEXPORT << "f\t";
-        for (int i : f.face)
+        for (int i : f.vertexList)
             objEXPORT << i+1 << "\t"; // from 0to1 index
         objEXPORT << std::endl;
     }
@@ -89,7 +89,7 @@ void ObjFile::vertexHandler()
     // String to Float
     vData.push(stof(x), stof(y), stof(z));
     // Push the Postion
-    vertex.push_back(vData);
+    vertexList.push_back(vData);
     // Clear Buffer
     info.clear();
 }
@@ -128,7 +128,7 @@ void ObjFile::triangulation(std::vector<int>& FaceVertexArg,int mode=0)
         if (i & mode)
             subDivision(tempFace);
         else
-            face.push_back(tempFace);
+            faceList.push_back(tempFace);
     }
 }
 
@@ -143,22 +143,21 @@ void ObjFile::subDivision(Face& TriF)
         
     // Extract Segement Points
     vec3
-        pivot = vertex[TriF[2]]
-        + u * (vertex[TriF[0]] - vertex[TriF[2]])
-        + v * (vertex[TriF[1]] - vertex[TriF[2]]);
+        pivot = vertexList[TriF[2]]
+        + u * (vertexList[TriF[0]] - vertexList[TriF[2]])
+        + v * (vertexList[TriF[1]] - vertexList[TriF[2]]);
 
     // Add to File Vertex List
     Vertex TriV;
     TriV.push(pivot);
     // Add to File Vertex List
-    vertex.push_back(TriV);
+    vertexList.push_back(TriV);
     // Get Pivot Index in the Vertex List
-    int j = vertex.size() - 1,
+    int j = vertexList.size() - 1,
         z = TriF.size();
     // Push SubDivided Faces to Face List 
     for (int i = 0; i < z; i++)
-        face.push_back(Face(j, TriF[i], TriF[(i + 1) % z]));
-    
+        faceList.push_back(Face(j, TriF[i], TriF[(i + 1) % z]));
 }
 
 

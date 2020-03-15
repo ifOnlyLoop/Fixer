@@ -8,12 +8,9 @@
 #include <sstream>
 #include <iostream>
 // UD
-#include "Vertex.h"
-#include "Face.h"
-#include "FaceUtil.h"
+#include"ObjData.h"
+class ObjData;
 
-class Vertex;
-class Face;
 
 class ObjFile
 {
@@ -34,14 +31,14 @@ private:
 	/*
 	 * START OF Temp DATA 
 	 */
-
+	Face tempFace;
 	Vertex  // Vertex Dummy Info (string streaming)
-		vData;
+		vertexPosition;
 	std::string  // Vertex Dummy Position
 		x, y, z;
 	char   // .obj Geometric Data Type 
 		dataType;
-	std::vector<int> FaceVertex;
+	//std::vector<int> FaceVertex;
 	/*
 	 * END OF DUMMY DATA
 	 */
@@ -82,5 +79,7 @@ public:
 	// Traingulation Parameter
 	float u, v;
 	//std::vector<int>  face;
+	// .obj file Data
+	ObjData Data;
 };
 

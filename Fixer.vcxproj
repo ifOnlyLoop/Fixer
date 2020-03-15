@@ -103,6 +103,7 @@
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="ObjData.cpp" />
     <ClCompile Include="ObjFile.cpp" />
     <ClCompile Include="ObjReader.cpp" />
     <ClCompile Include="rMat.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="Face.h" />
     <ClInclude Include="MathUtil.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="ObjData.h" />
     <ClInclude Include="ObjFile.h" />
     <ClInclude Include="ObjReader.h" />
     <ClInclude Include="rMat.h" />

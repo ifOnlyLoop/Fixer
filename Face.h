@@ -25,10 +25,13 @@ public:
 	void push(int);
 	// Push Tri Face Verteces
 	void push(int x, int y, int z);
-
+	// 
+	void triangulation(Face& , ObjData& );
+	void subDivision(Face& , ObjData& , float, float);
 	// List of This Face Verteces
-	std::vector<int> vertexList;
+	std::vector<int> faceVertexList;
 	// List of This Face Verteces Data
+	bool isSub;
 	// std::vector<Vertex>& vertexListData;
 
 private:

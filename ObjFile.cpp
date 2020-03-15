@@ -31,6 +31,27 @@ void ObjFile::IMPORT(std::string filePath)
 	obj.close();
 }
 
+/*
+ * Store Data in the Suitasble c++ Format
+ */
+void ObjFile::read()
+{
+    while (!obj.eof())
+    {
+        // Get the First Element
+        std::getline(obj, ELEMENT);
+        // Stream the String (buffer)
+        info.str(ELEMENT);
+        // Get Element Type
+        info >> dataType;
+        // Proccess Based on Type
+        if (dataType == 'v')
+            vertexHandler();
+        if (dataType == 'f')
+            faceHandler();
+    }
+}
+
 void ObjFile::EXPORT(std::string filePath)
 {
     // Set File Path
@@ -43,41 +64,20 @@ void ObjFile::EXPORT(std::string filePath)
     objEXPORT.close();
 }
 
-/*
- * Store Data in the Suitasble c++ Format
- */
-void ObjFile::read()
-{
-    while (!obj.eof())
-    {
-        // Get the First Element
-        std::getline(obj, ELEMENT);
-        // Stream the String
-        info.str(ELEMENT);
-        // Get Element Type
-        info >> dataType;
-        // Proccess Based on Type
-        if (dataType == 'v')
-            vertexHandler();
-        if (dataType == 'f')
-            faceHandler();
-      
-    }
-}
-
 
 void ObjFile::write()
 {
-    
-    for (auto p : vertexList)
+    for (auto p : Data.vertexList)
     {
         objEXPORT << "v\t"<< p.x << "\t" << p.y << "\t" << p.z << std::endl;
     }
-    for (auto f : faceList)
+    for (auto f : Data.faceList)
     {
         objEXPORT << "f\t";
-        for (int i : f.vertexList)
-            objEXPORT << i+1 << "\t"; // from 0to1 index
+        for (int i : f.faceVertexList)
+        {
+            objEXPORT << i + 1 << "\t"; // from 0to1 index
+        }
         objEXPORT << std::endl;
     }
 }
@@ -87,9 +87,10 @@ void ObjFile::vertexHandler()
     // Get Vertex Postion
     info >> x >> y >> z;
     // String to Float
-    vData.push(stof(x), stof(y), stof(z));
+    vertexPosition.push(stof(x), stof(y), stof(z));
     // Push the Postion
-    vertexList.push_back(vData);
+    Data.vertexList.push_back(vertexPosition);
+    // vertexList.push_back(vData);
     // Clear Buffer
     info.clear();
 }
@@ -99,14 +100,15 @@ void ObjFile::faceHandler()
     // Get Verteces 
     std::string stringData;
     // Read Face Vertex Index in Vertex Data Member 
-    while (info >> stringData)
-        FaceVertex.push_back(stof(stringData)-1);
+    while (info >> stringData) 
+        tempFace.push(stoi(stringData)-1);
     // Polymesh to Trimesh
-    triangulation(FaceVertex,1);
+    Face().triangulation(tempFace,Data.faceList);
+    //triangulation(FaceVertex,1);
     // SubDivide the Trimesh
     //subDivision();
     // Clear 
-    FaceVertex.clear();
+    tempFace.clear();
 }
 
 void ObjFile::triangulation(std::vector<int>& FaceVertexArg,int mode=0)

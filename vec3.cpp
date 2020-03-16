@@ -1,6 +1,7 @@
 #include "vec3.h"
 #include<math.h>
 
+//using namespace vec3;
 /* Constructors */
 
 // Default constructor

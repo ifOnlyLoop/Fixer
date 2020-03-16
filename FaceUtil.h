@@ -7,17 +7,15 @@
 class Vertex;
 class Face;
 
-class FaceUtil
+class FaceUtil: public Face
 {
 public:
 	 FaceUtil();
 	~FaceUtil();
 
-	void process(ObjFile&, std::vector<int>&);
-	void triangulation(std::vector<int>&, int mode);
-	// 
-	void subDivision(Face& TriF);
-
+	void triangulation(int, ObjData&);
+	void subDivision(int, ObjData&, float, float);
+	
 private:
 
 };

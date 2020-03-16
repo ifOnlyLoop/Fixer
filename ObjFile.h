@@ -8,7 +8,11 @@
 #include <sstream>
 #include <iostream>
 // UD
+#include"./Vertex.h"
+#include"Face.h"
 #include"ObjData.h"
+class Vertex;
+class Face;
 class ObjData;
 
 
@@ -31,24 +35,24 @@ private:
 	/*
 	 * START OF Temp DATA 
 	 */
-	Face tempFace;
-	Vertex  // Vertex Dummy Info (string streaming)
+	
+	Vertex  // Vertex Dummy Info for String Streaming
 		vertexPosition;
-	std::string  // Vertex Dummy Position
-		x, y, z;
-	char   // .obj Geometric Data Type 
+	std::string  // Vertex Dummy Position for String Streaming
+		x, y, z, faceVertexIndex;
+	char   // .obj Geometric Data Type for String Streaming
 		dataType;
-	//std::vector<int> FaceVertex;
+
 	/*
 	 * END OF DUMMY DATA
 	 */
 	
-	// Set the .obj Import File
+	// Set the .obj Import File Reader
 	std::ifstream obj;
+	// Set Geometric Element Data Reader
+	std::stringstream info;
 	// Set the .obj Export File
 	std::ofstream objEXPORT;
-	// Set Element Data
-	std::stringstream info;
 	
 	// PRIVATE MEMBER FUNCTIONS //
 
@@ -66,20 +70,22 @@ private:
 	void subDivision(Face& TriF);
 
 public:
-	// Constrtuctor
+	// Constrtuctor //
 	 ObjFile();
 	~ObjFile();
 	 ObjFile(std::string);
+
 	// PUBLIC MEMBER FUNCTIONS //
 	void IMPORT(std::string);
 	void EXPORT(std::string);
+
 	// PUBLIC MEMBER DATATYPES //
 	std::vector<Vertex> vertexList;
 	std::vector<Face> faceList;
+	// .obj File Extracted Data
+	ObjData Data;
 	// Traingulation Parameter
 	float u, v;
-	//std::vector<int>  face;
-	// .obj file Data
-	ObjData Data;
+	
 };
 

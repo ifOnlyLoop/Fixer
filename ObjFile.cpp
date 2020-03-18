@@ -67,7 +67,6 @@ void ObjFile::EXPORT(std::string filePath)
 
 void ObjFile::write()
 {
-    std::cout<<"VOAM";
     for (auto p : Data.vertexList)
     {
         objEXPORT << "v\t"<< p.x << "\t" << p.y << "\t" << p.z << std::endl;
@@ -101,5 +100,7 @@ void ObjFile::faceHandler()
     // Read Face Vertex Index List
     while (info >> faceVertexIndex) 
         tempFace.push(stoi(faceVertexIndex)-1);
+    // Process Face
+    // Clear temp Data for next Iteration
     tempFace.clear();
 }

@@ -72,7 +72,7 @@ void FaceUtil::subDivision(int faceIndex, ObjData& objData, float u, float v)
         z = face.size();
     // Push SubDivided Faces to Face List 
     for (int i = 0; i < z; i++)
-        if(i)
+        if(i) // replace original face 
             objData.faceList[faceIndex]=Face(j, face[i], face[(i + 1) % z]);
         else
             objData.faceList.push_back(Face(j, face[i], face[(i + 1) % z]));

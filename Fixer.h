@@ -4,19 +4,10 @@
 class Fixer
 {
 public:
-	 Fixer(std::string);
+	 Fixer();
 	~Fixer();
 
 
 private:
 
 };
-
-Fixer::Fixer()
-{
-
-}
-
-Fixer::~Fixer()
-{
-}

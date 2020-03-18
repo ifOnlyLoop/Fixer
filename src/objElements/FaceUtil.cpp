@@ -57,7 +57,7 @@ void FaceUtil::subDivision(int faceIndex, ObjData& objData, float u, float v)
     Face tempFace;
      // Extract Segement Points
     
-    vec3
+    vect
         pivot = objData.vertexList[face[2]]
         + u * (objData.vertexList[face[0]] - objData.vertexList[face[0]])
         + v * (objData.vertexList[face[1]] - objData.vertexList[face[0]]);

@@ -78,7 +78,7 @@ public:
 	// PUBLIC MEMBER FUNCTIONS //
 	void IMPORT(std::string);
 	void EXPORT(std::string);
-
+	void ROTATE(float, float, float);
 	// PUBLIC MEMBER DATATYPES //
 	std::vector<Vertex> vertexList;
 	std::vector<Face> faceList;

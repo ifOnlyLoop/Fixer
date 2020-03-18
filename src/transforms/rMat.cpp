@@ -1,21 +1,22 @@
-#include"rMat.h"
-#include "eAng.h"
-#include "vec3.h"
+#include "rmat.h"
 
-void rMat::identity()
+
+rmat::rmat()
 {
     m11 = m22 = m33 = 1;
     m12 = m13 = m21 = m23 = m31 = m32 = 0;
 }
 
-// Setup the matrix with a specified orientation
-void rMat::set(const eAng& orientation) 
+rmat::~rmat()
 {
-    // Fetch sine and cosine of angles
-    float sh=0, ch=0, sp=0, cp=0, sb=0, cb=0;
-    sinCos(sh, ch, orientation.heading);
-    sinCos(sp, cp, orientation.pitch);
-    sinCos(sb, cb, orientation.bank);
+}
+
+void rmat::orientation(float heading, float pitch, float bank)
+{
+    float sh = 0, ch = 0, sp = 0, cp = 0, sb = 0, cb = 0;
+    sinCos(sh, ch, heading);
+    sinCos(sp, cp, pitch);
+    sinCos(sb, cb, bank);
 
     // Fill in the matrix elements
     m11 = ch * cb + sh * sp * sb;
@@ -29,30 +30,11 @@ void rMat::set(const eAng& orientation)
     m33 = ch * cp;
 }
 
-// Perform vector/point rotations
-// rMat::inertialToObject
-//
-// Rotate a vector from inertial to object space
-vec3 rMat::inertialToObject(const vec3& v) 
+void rmat::rotate(/*const*/ vect& v)
 {
     // Perform the matrix multiplication in the "standard" way.
-    return vec3(
-        m11 * v.x + m21 * v.y + m31 * v.z,
-        m12 * v.x + m22 * v.y + m32 * v.z,
-        m13 * v.x + m23 * v.y + m33 * v.z
-        );
+    v.x = m11 * v.x + m21 * v.y + m31 * v.z;
+    v.y = m12 * v.x + m22 * v.y + m32 * v.z;
+    v.z = m13 * v.x + m23 * v.y + m33 * v.z;
 }
 
-//---------------------------------------------------------------------------
-// rMat::objectToInertial
-//
-// Rotate a vector from object to inertial space
-vec3 rMat::objectToInertial(const vec3& v) 
-{
-    // Multiply by the transpose
-    return vec3(
-        m11 * v.x + m12 * v.y + m13 * v.z,
-        m21 * v.x + m22 * v.y + m23 * v.z,
-        m31 * v.x + m32 * v.y + m33 * v.z
-        );
-}

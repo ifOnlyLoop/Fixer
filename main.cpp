@@ -1,4 +1,4 @@
-#include <stdio.h>
+//#include <stdio.h>
 #include <iostream>
 
 #include <fstream>
@@ -7,7 +7,7 @@
 #include <vector>
 #include <chrono> 
 
-#include "ObjFile.h"
+#include "./src/objElements/ObjFile.h"
 
 using namespace std;
 using namespace chrono;
@@ -22,6 +22,13 @@ int main()
     ObjFile obj("objTest.obj");
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
+    cout << endl << duration.count() << endl;
+    // Rotate
+    start = high_resolution_clock::now();
+    // export file
+    obj.ROTATE(0, 0, 0.785398);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
     cout << endl << duration.count() << endl;
 
     // measure export time

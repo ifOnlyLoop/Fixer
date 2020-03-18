@@ -11,7 +11,7 @@ public:
 	~Matrix();
 
 	float getElement(unsigned int row, unsigned int col);
-	//Matrix& operator [](const vec3& a);
+	//Matrix& operator [](const vect& a);
 
 private:
 	unsigned int rows, cols;

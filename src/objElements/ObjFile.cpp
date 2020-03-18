@@ -1,8 +1,10 @@
 #include "ObjFile.h"
-
+#include "FaceUtil.h"
+#include "../transforms/rmat.h"
 ObjFile::ObjFile()
 {
 }
+
 ObjFile::ObjFile(std::string filePath)
 {
     ELEMENT = "";
@@ -101,6 +103,17 @@ void ObjFile::faceHandler()
     while (info >> faceVertexIndex) 
         tempFace.push(stoi(faceVertexIndex)-1);
     // Process Face
+    Data.faceList.push_back(tempFace);
+    FaceUtil().triangulation(Data.faceList.size() - 1, Data);
     // Clear temp Data for next Iteration
     tempFace.clear();
+}
+
+void ObjFile::ROTATE(float h, float p, float b)
+{
+    rmat rotM;
+    rotM.orientation(h, p, b);
+    for (auto &v : Data.vertexList)
+        rotM.rotate(v);
+    
 }

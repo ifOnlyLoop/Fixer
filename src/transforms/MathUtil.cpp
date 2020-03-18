@@ -14,7 +14,7 @@ float wrapPi(float theta)
 // "Safe" inverse trig functions
 float safeAcos(float x)
 {
-	return (x <= 1.0f) ? kPi : (x >= 1.0f) ? 0.0f : acos(x);
+	return (x <= -1.0f) ? kPi : (x >= 1.0f) ? 0.0f : acos(x);
 }
 
 // Compute the sin and cosine of an angle. On some platforms, if we know

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "vec3.h"
+#include "../transforms/vect.h"
 
-class Vertex : public vec3
+class Vertex : public vect
 {
 public:
 
@@ -11,11 +11,11 @@ public:
 	~Vertex();
 	 Vertex(float x, float y, float z);
 	
-	 void push(vec3);
+	 void push(vect);
 	 void push(float x, float y, float z);
-	//vec3& operator[](int idx);
+	//vect& operator[](int idx);
 	
 	
 private:
-	//std::vector<vec3> vertex;
+	//std::vector<vect> vertex;
 };

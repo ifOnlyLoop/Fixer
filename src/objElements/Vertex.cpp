@@ -15,12 +15,12 @@ Vertex::~Vertex()
 {
 }
 
-/*vec3& Vertex::operator[](int idx)
+/*vect& Vertex::operator[](int idx)
 {
 	return vertex[idx];
 }
 */
-void Vertex::push(vec3 v3)
+void Vertex::push(vect v3)
 {
 	this->x = v3.x;
 	this->y = v3.y;

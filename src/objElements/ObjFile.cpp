@@ -42,15 +42,21 @@ void ObjFile::read()
     {
         // Get the First Element
         std::getline(obj, ELEMENT);
+        // Split Vertex//Normal Index
+        objElementSplit(ELEMENT);
         // Stream to String Buffer
         info.str(ELEMENT);
         // Get Element Type
         info >> dataType;
         // Proccess Based on Type
-        if (dataType == 'v')
-            vertexHandler();
-        if (dataType == 'f')
+        if (dataType == "v")
+            vertexHandler(0);
+        if (dataType == "vn")
+            vertexHandler(1);
+        if (dataType == "f")
             faceHandler();
+        // Clear Buffer
+        info.clear();
     }
 }
 
@@ -71,27 +77,34 @@ void ObjFile::write()
 {
     for (auto p : Data.vertexList)
     {
-        objEXPORT << "v\t"<< p.x << "\t" << p.y << "\t" << p.z << std::endl;
+        objEXPORT << "v\t" << p.x << "\t" << p.y << "\t" << p.z << std::endl;
+    }
+    for (auto p : Data.normalList)
+    {
+        objEXPORT << "vn\t"<< p.x << "\t" << p.y << "\t" << p.z << std::endl;
     }
     for (auto f : Data.faceList)
     {
         objEXPORT << "f\t";
         for (int i : f.faceVertexList)
         {
-            objEXPORT << i + 1 << "\t"; // from 0to1 index
+            objEXPORT << i + 1 << "//" << Data.vertexList[i].NORMAL_INDEX <<"\t"; // from 0to1 index
         }
         objEXPORT << std::endl;
     }
 }
 
-void ObjFile::vertexHandler()
+void ObjFile::vertexHandler(bool isNormal=0)
 {
     // Get Vertex Postion
     info >> x >> y >> z;
     // String to Float
     vertexPosition.push(stof(x), stof(y), stof(z));
     // Push the Postion
-    Data.vertexList.push_back(vertexPosition);
+    if(isNormal)
+        Data.normalList.push_back(vertexPosition);
+    else
+        Data.vertexList.push_back(vertexPosition);
     // Clear Buffer for Next Reading
     info.clear();
 }
@@ -99,9 +112,18 @@ void ObjFile::vertexHandler()
 void ObjFile::faceHandler()
 {
     Face tempFace;
+    // EVEN: vertex ODD: normal
+    int vertexOrNormal = 0;
     // Read Face Vertex Index List
-    while (info >> faceVertexIndex) 
-        tempFace.push(stoi(faceVertexIndex)-1);
+    while (info >> faceVertexIndex)
+    {
+        if (vertexOrNormal & 1)
+            Data.vertexList[tempFace.faceVertexList.back()].NORMAL_INDEX = stoi(faceVertexIndex) - 1;
+        else // link vertex with its normal
+            tempFace.push(stoi(faceVertexIndex) - 1);
+        vertexOrNormal++;
+    }
+        
     // Process Face
     Data.faceList.push_back(tempFace);
     FaceUtil().triangulation(Data.faceList.size() - 1, Data);
@@ -115,5 +137,15 @@ void ObjFile::ROTATE(float h, float p, float b)
     rotM.orientation(h, p, b);
     for (auto &v : Data.vertexList)
         rotM.rotate(v);
-    
+    for (auto& v : Data.normalList)
+        rotM.rotate(v);
 }
+
+
+void ObjFile::objElementSplit(std::string& s)
+{
+    for (char& c : s)
+        if (c == '/') c = ' ';
+}
+
+

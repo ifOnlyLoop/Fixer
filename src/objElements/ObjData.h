@@ -13,7 +13,7 @@ public:
 	bool isSub;
 
 	// Mesh List of Verteces
-	std::vector<Vertex> vertexList;
+	std::vector<Vertex> vertexList, normalList;
 	// Mesh List of Faces
 	std::vector<Face> faceList;
 	// Temp Data to Save Face list of 

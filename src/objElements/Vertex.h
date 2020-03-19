@@ -14,7 +14,7 @@ public:
 	 void push(vect);
 	 void push(float x, float y, float z);
 	//vect& operator[](int idx);
-	
+	 int NORMAL_INDEX;
 	
 private:
 	//std::vector<vect> vertex;

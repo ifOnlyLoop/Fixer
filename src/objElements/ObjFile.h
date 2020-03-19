@@ -40,7 +40,7 @@ private:
 		vertexPosition;
 	std::string  // Vertex Dummy Position for String Streaming
 		x, y, z, faceVertexIndex;
-	char   // .obj Geometric Data Type for String Streaming
+	std::string//char   // .obj Geometric Data Type for String Streaming
 		dataType;
 
 	/*
@@ -61,13 +61,11 @@ private:
 	// Write to .obj Data
 	void write();
 	// Handle Vertex
-	void vertexHandler();
+	void vertexHandler(bool);
 	// Handle Face
 	void faceHandler();
-	// Triangulate Polygons
-	void triangulation(std::vector<int>&, int mode);
-	// 
-	void subDivision(Face& TriF);
+	// split face's normal and vertex index
+	void objElementSplit(std::string&);
 
 public:
 	// Constrtuctor //

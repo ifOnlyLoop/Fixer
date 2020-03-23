@@ -1,6 +1,8 @@
 #include "ObjFile.h"
 #include "FaceUtil.h"
 #include "../transforms/rmat.h"
+#include "../../quat.h"
+
 ObjFile::ObjFile()
 {
 }
@@ -133,12 +135,17 @@ void ObjFile::faceHandler()
 
 void ObjFile::ROTATE(float h, float p, float b)
 {
-    rmat rotM;
-    rotM.orientation(h, p, b);
-    for (auto &v : Data.vertexList)
-        rotM.rotate(v);
-    for (auto& v : Data.normalList)
-        rotM.rotate(v);
+    quat rx, ry, rz;
+        rx.setToRotateAboutX(h);
+        ry.setToRotateAboutY(p);
+        rz.setToRotateAboutZ(b);
+    quat r(rx * ry * rz);
+
+    for (vect& v : Data.vertexList)
+        r* v;
+    
+    //for (vect& v : Data.normalList)
+      //  r* v;
 }
 
 

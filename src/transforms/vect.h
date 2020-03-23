@@ -6,7 +6,7 @@ class vect { // float: Data Type
 
 public:
 	// Public representation: Not many options here.
-	float x, y, z;
+	float x, y, z, w;
 	bool isRowVector = 1;
 
 	/* Constructors */
@@ -52,7 +52,8 @@ public:
 
 	/* Normalize the vector */ 
 	void normalize();
-
+	/* Rotate around it */
+	void rotate(vect& v){}
 	/* Vector dot product */
 	float operator *(const vect& a) const;
 };
@@ -62,22 +63,22 @@ public:
  */
 
  // Compute the magnitude of a vector vectorMag
-float norm(const vect& a);
+extern float norm(const vect& a);
 
 // Compute the cross product of two vectors
-vect cross(const vect& a, const vect& b);
+extern vect cross(const vect& a, const vect& b);
 
 // Scalar on the left multiplication, for symmetry
-vect operator *(float k, const vect& v);
+extern vect operator *(float k, const vect& v);
 
 // Compute the distance between two points
-float dist(const vect& a, const vect& b);
+extern float dist(const vect& a, const vect& b);
 
 /*
  *Global variables
  */
 
  // We provide a global zero vector constant
-const vect kZeroVector;
+extern const vect kZeroVector;
 
 #endif // VEC3_H

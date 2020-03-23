@@ -7,6 +7,7 @@
 #include <vector>
 #include <chrono> 
 
+#include "./quat.h"
 #include "./src/objElements/ObjFile.h"
 
 using namespace std;
@@ -27,7 +28,11 @@ int main()
     
     // Rotate
     start = high_resolution_clock::now();
-    obj.ROTATE(1, 1, 1);
+    //for (int i = 0; i < 37; i++)
+    {
+        //obj.ROTATE(1+i,0.5*i,7.0/i);
+    }
+    obj.ROTATE(1,1,1);
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
     cout << endl << duration.count() / 1e6 << endl;
@@ -39,6 +44,7 @@ int main()
     stop = high_resolution_clock::now();
     duration = duration_cast<microseconds>(stop - start);
     cout << endl << duration.count() / 1e6 << endl;
+    
     
     system("pause");
 	return 0;

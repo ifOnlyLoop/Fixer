@@ -6,6 +6,8 @@ class rmat
 public:
 	 rmat();
 	~rmat();
+
+    void canonize(float&, float&, float&);
 	
     float 	
         m11, m12, m13,

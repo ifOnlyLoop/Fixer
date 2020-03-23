@@ -51,6 +51,9 @@
     <ClCompile Include="src\transforms\vect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="quat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fixer.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\transforms\vect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="quat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #include "rmat.h"
-
+#include <math.h>
 
 rmat::rmat()
 {
@@ -13,6 +13,8 @@ rmat::~rmat()
 
 void rmat::orientation(float heading, float pitch, float bank)
 {
+	canonize(heading, pitch, bank);
+
     float sh = 0, ch = 0, sp = 0, cp = 0, sb = 0, cb = 0;
     sinCos(sh, ch, heading);
     sinCos(sp, cp, pitch);
@@ -38,3 +40,37 @@ void rmat::rotate(/*const*/ vect& v)
     v.z = m13 * v.x + m23 * v.y + m33 * v.z;
 }
 
+// Determine "canonical" Euler angle triple
+void rmat::canonize(float& heading, float& pitch, float& bank)
+{
+	// First, wrap pitch in range -pi ... pi
+	pitch = wrapPi(pitch);
+	// Now, check for "the back side" of the matrix pitch outside
+	// the canonical range of -pi/2 ... pi/2
+
+	if (pitch < -kPiOver2) {
+		pitch = -kPi - pitch;
+		heading += kPi;
+		bank += kPi;
+	}
+	else if (pitch > kPiOver2) {
+		pitch = kPi - pitch;
+		heading += kPi;
+		bank += kPi;
+	}
+	// Now check for the gimbel lock case (within a slight tolerance)
+	if (fabs(pitch) > kPiOver2 - 1e-4)
+	{
+		// We are in gimbel lock. Assign all rotation
+		// about the vertical axis to heading
+		heading += bank;
+		bank = 0.0f;
+	}
+	else {
+		// Not in gimbel lock. Wrap the bank angle in
+		// canonical range
+		bank = wrapPi(bank);
+	}
+	// Wrap heading in canonical range
+	heading = wrapPi(heading);
+}

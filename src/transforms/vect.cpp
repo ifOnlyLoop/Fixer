@@ -5,7 +5,7 @@
 /* Constructors */
 
 // Default constructor
-vect::vect() :x(0), y(0), z(0) 
+vect::vect() :x(0), y(0), z(0), w(0)
 {
 }
 
@@ -13,7 +13,8 @@ vect::vect() :x(0), y(0), z(0)
 vect::vect(const vect& a) : 
 	x(a.x),
 	y(a.y),
-	z(a.z) 
+	z(a.z),
+	w(a.w)
 {
 }
 
@@ -116,6 +117,9 @@ void vect::normalize()
 		x *= oneOverMag; y *= oneOverMag; z *= oneOverMag;
 	}
 }
+
+// rotate here 
+
 
 /* Vector dot product */
 float vect::operator *(const vect& a) const

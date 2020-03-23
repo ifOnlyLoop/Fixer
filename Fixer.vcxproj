@@ -100,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="Fixer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="quat.cpp" />
     <ClCompile Include="src\objelements\Edge.cpp" />
     <ClCompile Include="src\objelements\Face.cpp" />
     <ClCompile Include="src\objelements\FaceUtil.cpp" />
@@ -113,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fixer.h" />
+    <ClInclude Include="quat.h" />
     <ClInclude Include="src\objelements\Edge.h" />
     <ClInclude Include="src\objelements\Face.h" />
     <ClInclude Include="src\objelements\FaceUtil.h" />
